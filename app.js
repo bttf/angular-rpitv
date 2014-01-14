@@ -6,7 +6,7 @@
 var express = require('express'),
   routes = require('./routes'),
   socket = require('./routes/socket.js'),
-  config = require('./config.js'),
+  // config = require('./config.js'),
   app = module.exports = express(),
   server = require('http').createServer(app)
 , https = require('https')
@@ -103,9 +103,9 @@ io.sockets.on('connection', function (socket) {
                 me.stdout = stdout.read().toString().replace(/[\r\n]/g, "");
                 socket.emit("video",{output: "loading"});
                 omx.start(me.stdout);
-                omx.ev.on('omx_status', function(data) {
-                    socket.emit("video",{status: data, video_id:id});
-                });
+                // omx.ev.on('omx_status', function(data) {
+                //     socket.emit("video",{status: data, video_id:id});
+                // });
               }, 
               function (me) {
                 socket.emit("video",{status: "now_playing", video_id:id});
